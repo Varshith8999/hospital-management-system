@@ -1,0 +1,91 @@
+name: hospital-management-system
+
+# Every value below comes from the root .env file (copy .env.example first).
+# The `:?` syntax makes Compose fail loudly rather than fall back to a
+# hard-coded credential.
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: hms-mysql
+    restart: unless-stopped
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?set MYSQL_ROOT_PASSWORD in .env}
+      MYSQL_DATABASE: ${DB_NAME:-hospital_db}
+      MYSQL_USER: ${DB_USER:?set DB_USER in .env}
+      MYSQL_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in .env}
+    ports:
+      - '${MYSQL_PORT:-3307}:3306'
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h', '127.0.0.1', '-u', 'root', '-p${MYSQL_ROOT_PASSWORD}']
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+    networks: [hms]
+
+  backend:
+    build:
+      # Root context so database/migrations and database/seeders ship with the API.
+      context: .
+      dockerfile: backend/Dockerfile
+    image: ${DOCKER_USERNAME:-local}/hospital-management-backend:${IMAGE_TAG:-latest}
+    container_name: hms-backend
+    restart: unless-stopped
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+      PORT: 5000
+      DB_DIALECT: mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: ${DB_NAME:-hospital_db}
+      DB_USER: ${DB_USER:?set DB_USER in .env}
+      DB_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in .env}
+      JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET in .env}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:-}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-1d}
+      BCRYPT_ROUNDS: ${BCRYPT_ROUNDS:-10}
+      CORS_ORIGIN: ${CORS_ORIGIN:-*}
+      RATE_LIMIT_MAX: ${RATE_LIMIT_MAX:-1000}
+      AUTH_RATE_LIMIT_MAX: ${AUTH_RATE_LIMIT_MAX:-20}
+      RUN_MIGRATIONS: ${RUN_MIGRATIONS:-true}
+      RUN_SEEDERS: ${RUN_SEEDERS:-true}
+      SEED_PASSWORD: ${SEED_PASSWORD:-Password@123}
+      APP_VERSION: ${IMAGE_TAG:-latest}
+    ports:
+      - '${BACKEND_PORT:-5000}:5000'
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks: [hms]
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: ${DOCKER_USERNAME:-local}/hospital-management-frontend:${IMAGE_TAG:-latest}
+    container_name: hms-frontend
+    restart: unless-stopped
+    environment:
+      # nginx proxies /api to the backend, so the browser stays same-origin.
+      BACKEND_URL: http://backend:5000
+      API_URL: ${FRONTEND_API_URL:-/api}
+    ports:
+      - '${FRONTEND_PORT:-3000}:80'
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks: [hms]
+
+volumes:
+  mysql_data:
+    driver: local
+
+networks:
+  hms:
+    driver: bridge
