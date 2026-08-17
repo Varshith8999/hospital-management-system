@@ -5,6 +5,8 @@ Admins, Doctors, Nurses, Receptionists and Patients — covering patient
 records, appointments (with double-booking prevention), prescriptions,
 medical records and billing.
 
+**Dashboard:** http://localhost:5173 (once the app is running — see setup below)
+
 ## Technology stack
 
 | Layer    | Technology                                                        |

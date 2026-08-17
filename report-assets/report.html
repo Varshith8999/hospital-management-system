@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>DevOps Tools Assignment - Hospital Management System</title>
+<style>
+  @page { size: A4; margin: 22mm 20mm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #000;
+    line-height: 1.5;
+    font-size: 13px;
+  }
+  p { margin: 8px 0; text-align: justify; }
+  .center { text-align: center; }
+  .right { text-align: right; }
+  .bold { font-weight: bold; }
+  .u { text-decoration: underline; }
+  .doc-title { font-size: 21px; font-weight: bold; text-align: center; margin-bottom: 26px; }
+  .meta-block { text-align: right; margin-bottom: 22px; }
+  .meta-block div { margin: 1px 0; }
+  .section-head { font-weight: bold; text-decoration: underline; font-size: 13.5px; margin: 22px 0 8px; }
+  .section { page-break-inside: avoid; }
+  .quote-title { font-size: 17px; font-weight: bold; text-align: center; margin: 4px 0 14px; }
+  table { width: 100%; border-collapse: collapse; margin: 6px 0 10px; font-size: 12.5px; }
+  th, td { border: 1px solid #000; padding: 5px 9px; text-align: left; vertical-align: top; }
+  th { font-weight: bold; }
+  code, .mono { font-family: 'Consolas', 'Courier New', monospace; font-size: 12px; }
+  .endpoint-list { font-family: 'Consolas', 'Courier New', monospace; font-size: 12.5px; margin: 6px 0; }
+  .endpoint-list div { margin: 2px 0; }
+  ul, ol { margin: 6px 0 10px 22px; padding: 0; }
+  li { margin: 3px 0; }
+  .term {
+    background: #1b1b1b;
+    color: #e8e8e8;
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 11.5px;
+    line-height: 1.55;
+    margin: 8px 0 14px;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .term .p { color: #7fd67f; }
+  .term .c { color: #9fd3ff; }
+  .note {
+    border: 1px solid #999;
+    background: #f4f4f4;
+    padding: 8px 12px;
+    font-size: 11.5px;
+    margin: 8px 0 14px;
+  }
+  .browser-frame {
+    border: 1px solid #999;
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 10px 0 4px;
+  }
+  .browser-bar {
+    background: #e8e8e8;
+    border-bottom: 1px solid #ccc;
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+  .dot.r { background: #ec6a5e; } .dot.y { background: #f4bf4f; } .dot.g { background: #61c454; }
+  .addr {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 11px;
+    font-family: 'Consolas', monospace;
+    padding: 3px 10px;
+    color: #333;
+    margin-left: 8px;
+  }
+  .browser-frame img { width: 100%; display: block; }
+  .caption { font-size: 11.5px; font-style: italic; color: #333; margin: 4px 0 16px; }
+  .page-break { page-break-before: always; }
+</style>
+</head>
+<body>
+
+<div class="doc-title">DEVOPS TOOLS ASSIGNMENT &ndash; 1</div>
+<div class="meta-block">
+  <div>160123729059</div>
+  <div>Varshith Daduvy</div>
+  <div>AIML &ndash; J</div>
+  <div>VII SEMESTER</div>
+</div>
+
+<div class="section-head">TITLE:</div>
+<div class="quote-title">&ldquo;HOSPITAL MANAGEMENT SYSTEM&rdquo;</div>
+
+<p><span class="bold u">FULL TITLE:</span> <span class="bold">Hospital Management System (full-stack)</span>
+&mdash; a role-based hospital operations platform built with Git/GitHub for
+version control, and Docker &amp; Jenkins for containerized deployment
+automation.</p>
+
+<div class="section-head">DESCRIPTION:</div>
+<p>
+The Hospital Management System is a full-stack web application built to
+manage day-to-day hospital operations across five distinct roles &mdash;
+Admin, Doctor, Nurse, Receptionist and Patient. Each role signs in to its
+own dashboard and sees only the data and actions relevant to it: admins
+oversee users, doctors and departments hospital-wide; doctors manage their
+own patients and appointments; nurses assist with patient care;
+receptionists handle registration and scheduling; and patients book
+appointments and view their own records.
+</p>
+<p>
+The application was developed as a demonstration of how a real,
+data-backed full-stack application can be integrated with modern DevOps
+practices. The project uses Git and GitHub for source-code management,
+Node.js/Express for the backend REST API, React for the frontend, and MySQL
+via the Sequelize ORM as the database &mdash; with Docker and Jenkins
+included in the repository to automate containerized deployment.
+</p>
+<p>
+The system covers patient records, appointment scheduling with
+double-booking prevention, prescriptions, medical records and billing.
+Unlike a JSON-file backed demo, data is persisted in a real MySQL 8
+database across nine migrated tables with seeded demo data, and every
+endpoint is secured with JWT authentication and per-role authorization
+middleware.
+</p>
+<p>
+The main objective of the project is not just a UI demo, but to demonstrate
+the complete lifecycle of a full-stack application from development and
+version control, through automated testing, to containerized deployment.
+</p>
+
+<div class="section-head">TOOLS USED:</div>
+<table>
+  <tr><th>TOOLS</th><th>PURPOSE</th></tr>
+  <tr><td>React 18 + Vite</td><td>Frontend SPA &mdash; component-based UI, dev server</td></tr>
+  <tr><td>React Router</td><td>Client-side routing between role dashboards</td></tr>
+  <tr><td>Tailwind CSS</td><td>Styling, layout and responsive design</td></tr>
+  <tr><td>Axios</td><td>Frontend &rarr; REST API communication</td></tr>
+  <tr><td>Node.js</td><td>Backend programming</td></tr>
+  <tr><td>Express</td><td>REST API and application server</td></tr>
+  <tr><td>Sequelize</td><td>MySQL schema modelling, migrations and seeders</td></tr>
+  <tr><td>MySQL 8</td><td>Relational application data storage</td></tr>
+  <tr><td>JWT / bcryptjs</td><td>Authentication and password hashing</td></tr>
+  <tr><td>Jest / Supertest</td><td>Automated API testing</td></tr>
+  <tr><td>git</td><td>Version control</td></tr>
+  <tr><td>github</td><td>Remote source code repository</td></tr>
+  <tr><td>docker</td><td>Application containerization</td></tr>
+  <tr><td>jenkins</td><td>CI/CD automation</td></tr>
+</table>
+
+<div class="section-head">PROJECT STRUCTURE:</div>
+<p>
+The project is organized into separate frontend, backend, database and
+deployment components.
+</p>
+<p>
+The <code>backend</code> directory contains the Express application &mdash;
+controllers, routes, models, middleware and services. The
+<code>frontend</code> directory contains the React user interface. The
+<code>database</code> directory contains the Sequelize migrations and
+seeders. The <code>Dockerfile</code>s (one per service) define the
+container images, while the <code>Jenkinsfile</code> defines the CI/CD
+pipeline.
+</p>
+
+<div class="section-head">BACKEND IMPLEMENTATION:</div>
+<p>The backend was implemented using <span class="bold">Node.js and the Express framework</span>.</p>
+<p>The Express application provides REST API endpoints for accessing hospital data. The major endpoints implemented are:</p>
+<div class="endpoint-list">
+<div>GET&nbsp;&nbsp; /api/health</div>
+<div>POST&nbsp; /api/auth/login</div>
+<div>GET&nbsp;&nbsp; /api/auth/me</div>
+<div>GET / POST / PUT / DELETE&nbsp;&nbsp; /api/patients</div>
+<div>GET / POST / PUT / DELETE&nbsp;&nbsp; /api/doctors</div>
+<div>GET / POST / PUT / DELETE&nbsp;&nbsp; /api/appointments</div>
+<div>GET / POST / PUT / DELETE&nbsp;&nbsp; /api/medical-records</div>
+<div>GET / POST / PUT / DELETE&nbsp;&nbsp; /api/prescriptions</div>
+<div>GET / POST / PUT / DELETE&nbsp;&nbsp; /api/bills</div>
+<div>GET&nbsp;&nbsp; /api/dashboard</div>
+</div>
+<p>
+The <code>/api/dashboard</code> endpoint provides aggregated,
+role-aware statistics such as total patients, doctors, nurses,
+appointments (pending / completed / cancelled), prescriptions, medical
+records and billing totals &mdash; this is what powers every role's
+dashboard screen.
+</p>
+<p>
+The <code>/api/appointments</code> endpoints prevent double-booking a
+doctor for the same slot, and support confirm / reject / complete state
+transitions restricted to doctors and admins.
+</p>
+<p>
+The backend also implements appropriate HTTP responses for invalid IDs.
+For example, requesting a patient that does not exist produces an
+HTTP&nbsp;404&nbsp;Not&nbsp;Found response rather than causing the
+application to crash.
+</p>
+
+<div class="section-head">FRONTEND IMPLEMENTATION:</div>
+<p>The frontend was developed using React 18, Vite and Tailwind CSS.</p>
+<p>Each role lands on its own dashboard after login:</p>
+<ul>
+  <li>Admin dashboard</li>
+  <li>Doctor dashboard</li>
+  <li>Nurse dashboard</li>
+  <li>Receptionist dashboard</li>
+  <li>Patient dashboard</li>
+  <li>Role-based route protection</li>
+  <li>Shared appointments, bills, doctors, patients, prescriptions and records pages</li>
+  <li>Toast notifications</li>
+</ul>
+<p>
+When a dashboard is loaded, the React app requests data from the Express
+REST API via Axios and renders it into live counters and tables.
+</p>
+<p>
+When a user books, confirms or updates an appointment, the frontend calls
+the corresponding API endpoint and refreshes the affected views.
+</p>
+<p>
+This creates a clear separation between the frontend presentation layer and
+the backend data / API layer.
+</p>
+
+<div class="section-head">TESTING AND AUTOMATED TESTING:</div>
+<p>The application was executed locally and accessed through:</p>
+<p class="center mono">http://localhost:5173</p>
+<p>The dashboards, REST APIs, authentication and role-based access were all verified.</p>
+<p>A dedicated test suite was created using <span class="bold">Jest</span> and <span class="bold">Supertest</span>.</p>
+<p>The test suite contains 112 automated test cases across 7 suites. The tests verify:</p>
+<ol>
+  <li>Registration and login.</li>
+  <li>JWT-protected routes and rejection of missing/malformed tokens.</li>
+  <li>Role-based authorization (e.g. a patient is blocked from the admin-only users endpoint).</li>
+  <li>Patient, doctor, nurse and department CRUD, search and pagination.</li>
+  <li>Appointment booking, confirm/reject/complete transitions, and double-booking prevention.</li>
+  <li>Handling of invalid IDs with proper 404 responses.</li>
+  <li>Dashboard summary counters for every role.</li>
+  <li>Health check liveness and readiness.</li>
+</ol>
+<p>The tests were executed using:</p>
+<div class="term"><span class="c">$</span> npm test
+<span class="c">&gt;</span> cross-env NODE_ENV=test jest --runInBand --forceExit</div>
+<p>The final test execution produced:</p>
+<div class="term">PASS  tests/health.test.js
+PASS  tests/doctor.test.js
+PASS  tests/patient.test.js
+PASS  tests/auth.test.js
+PASS  tests/bill.test.js
+PASS  tests/prescription.test.js
+PASS  tests/appointment.test.js
+
+<span class="p">Test Suites: 7 passed, 7 total
+Tests:       112 passed, 112 total</span>
+Time:        13.374 s</div>
+<p>This automated test suite forms the primary Continuous Integration verification step in the Jenkins pipeline (see below).</p>
+
+<div class="section-head">GIT AND GITHUB INTEGRATION:</div>
+<p>
+The project is version-controlled with Git. A private GitHub repository was
+created and the initial commit pushed to it, so that Jenkins can retrieve
+the latest version of the project automatically. GitHub also provides a
+central location for maintaining the source code and the Jenkinsfile.
+</p>
+<div class="term"><span class="c">$</span> git remote -v
+origin  https://github.com/Varshith8999/hospital-management-system.git (fetch)
+origin  https://github.com/Varshith8999/hospital-management-system.git (push)
+
+<span class="c">$</span> git log --oneline
+5b0d67e Initial commit: Hospital Management System
+
+<span class="c">$</span> git status
+On branch main
+<span class="p">Your branch is up to date with 'origin/main'.</span></div>
+<p>Repository: <span class="bold">github.com/Varshith8999/hospital-management-system</span> (private).
+<code>.env</code>, <code>node_modules/</code> and all credentials are excluded via
+<code>.gitignore</code>; only <code>.env.example</code> (a template with no real secrets) is tracked.</p>
+
+<div class="section-head page-break">DOCKER CONTAINERIZATION:</div>
+<div class="note">
+<span class="bold">Note:</span> Docker and Jenkins are fully <i>defined</i> in this repository
+and ready to run, but were not executed for this report &mdash; the app
+below was run and verified directly with Node.js and MySQL instead. This
+section documents the deployment design as written, not a verified
+container run.
+</div>
+<p>Docker was included to package the application into portable containers.</p>
+<p><code>docker-compose.yml</code> defines three services:</p>
+<ul>
+  <li><code>mysql</code> &mdash; MySQL 8, persistent volume, healthcheck</li>
+  <li><code>backend</code> &mdash; built from <code>backend/Dockerfile</code>, waits for MySQL's healthcheck, runs migrations + seeders on start</li>
+  <li><code>frontend</code> &mdash; built from <code>frontend/Dockerfile</code>, served by nginx, proxies <code>/api</code> to the backend</li>
+</ul>
+<p>The backend <code>Dockerfile</code> performs the following operations:</p>
+<ol>
+  <li>Selects the Node.js 18 slim base image.</li>
+  <li>Sets the working directory to <code>/app</code>.</li>
+  <li>Copies <code>package.json</code> and installs production dependencies.</li>
+  <li>Copies the project files, including the shared <code>database/</code> migrations and seeders.</li>
+  <li>Exposes port 5000.</li>
+  <li>Runs migrations/seeders (when enabled) and starts the Express application.</li>
+</ol>
+<p>Intended to be started with:</p>
+<div class="term"><span class="c">$</span> cp .env.example .env   <span class="p"># then set real credentials</span>
+<span class="c">$</span> docker compose up --build</div>
+
+<div class="section-head">JENKINS CONFIGURATION:</div>
+<p>
+The repository includes a declarative <code>Jenkinsfile</code>, designed to
+connect to the GitHub repository above and run with access to Git, Node.js
+and Docker. It defines four stages:
+</p>
+<p class="center mono bold">Checkout &rarr; Test &rarr; Docker Build &rarr; Deploy</p>
+
+<div class="section-head">CONTINUOUS INTEGRATION AND DEPLOYMENT:</div>
+<p>The Checkout stage retrieves the latest source code from GitHub.</p>
+<p>The Test stage is designed to execute the 112-test Jest suite shown above. If a test fails, the pipeline stops.</p>
+<p>The Docker Build stage builds the backend and frontend images after successful testing.</p>
+<p>The Deploy stage brings the stack up via Docker Compose and is designed to verify the containers are running.</p>
+
+<div class="section-head page-break">LOCAL VERIFICATION:</div>
+<p>
+In place of the containerized pipeline above, the application was actually
+run and verified directly: Node.js 18 and MySQL 8 inside a local Linux
+(WSL2) environment, migrations and seeders applied against a real MySQL
+database, then the backend and frontend started and exercised through a
+real browser session.
+</p>
+<div class="term"><span class="c">$</span> curl http://localhost:5000/api/health
+{<span class="c">"status"</span>:<span class="p">"ok"</span>,<span class="c">"service"</span>:<span class="p">"hospital-management-backend"</span>,<span class="c">"dependencies"</span>:{<span class="c">"database"</span>:<span class="p">"up"</span>}}
+
+<span class="c">$</span> curl -X POST http://localhost:5000/api/auth/login -d '{"email":"admin@hospital.test","password":"Password@123"}'
+{<span class="c">"success"</span>:<span class="p">true</span>,<span class="c">"message"</span>:<span class="p">"Login successful"</span>, <span class="c">"token"</span>:<span class="p">"eyJhbGciOi..."</span>}</div>
+
+<!-- ============ RESULT ============ -->
+<div class="section page-break">
+<div class="section-head" style="font-size:16px;">RESULT:</div>
+
+<div class="browser-frame">
+  <div class="browser-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+    <span class="addr">http://localhost:5173/login</span></div>
+  <img src="01-login.png" />
+</div>
+<div class="caption">Login screen.</div>
+
+<div class="browser-frame">
+  <div class="browser-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+    <span class="addr">http://localhost:5173/admin</span></div>
+  <img src="02-dashboard.png" />
+</div>
+<div class="caption">Administrator dashboard after login &mdash; live counts of patients, doctors,
+nurses, departments, appointments, prescriptions, medical records and billing, pulled from the
+real MySQL database via <code>/api/dashboard</code>.</div>
+</div>
+
+<!-- ============ TESTING (screens) ============ -->
+<div class="section page-break">
+<div class="section-head" style="font-size:16px;">TESTING:</div>
+<div class="browser-frame">
+  <div class="browser-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+    <span class="addr">http://localhost:5173/admin/appointments</span></div>
+  <img src="04-appointments.png" />
+</div>
+<div class="caption">Appointments management &mdash; real seeded appointment data with confirm /
+reject / complete / reschedule / cancel actions, exercised as the Admin role.</div>
+</div>
+
+<div class="section-head">CONCLUSION:</div>
+<p>
+The Hospital Management System demonstrates the development of a
+production-shaped full-stack web application integrated with modern DevOps
+practices.
+</p>
+<p>
+The project combines a Node.js/Express REST backend with a React frontend
+to provide role-based dashboards for hospital operations. MySQL, managed
+through versioned Sequelize migrations, was used to keep the data model
+realistic and relational rather than a flat-file demo.
+</p>
+<p>
+Git and GitHub were used for source-code management and version control,
+while Jest and Supertest provided 112 automated API tests, all passing.
+Docker and Jenkins are included in the repository to containerize the
+application and automate deployment, ready to be executed even though this
+run verified the application directly via a native Node.js/MySQL setup.
+</p>
+<p>
+The project demonstrates that CI/CD practices can be applied effectively to
+a real, data-backed application. Natural next steps include actually
+executing the Docker Compose stack and the Jenkins pipeline end-to-end,
+adding HTTPS and production-grade secrets management, and extending the
+test suite to cover billing and prescription workflows under load.
+</p>
+
+</body>
+</html>
