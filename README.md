@@ -35,10 +35,7 @@ cp .env.example .env          # required: Compose reads it for all credentials
 docker compose up --build
 ```
 
-- Frontend: http://localhost:3000
-- API: http://localhost:5000/api
-- Health check: http://localhost:5000/api/health
-
+- Frontend: http://localhost:5173/login
 ## Tests
 
 ```bash
