@@ -47,3 +47,4 @@ Thumbs.db
 # ------------------------------------------------------------------------ docker
 docker-compose.override.yml
 .claude/
+report-assets/
