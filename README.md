@@ -7,7 +7,7 @@ medical records and billing.
 
 **Dashboard:** http://localhost:5173 (once the app is running — see setup below)
 
-## Technology stack
+## Technology Stack
 
 | Layer    | Technology                                                        |
 | -------- | ----------------------------------------------------------------- |
